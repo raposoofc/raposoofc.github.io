@@ -714,14 +714,14 @@ body {
 }
 
 .contact-icon {
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
     background-color: rgba(139, 46, 60, 0.2);
     border-radius: var(--radius);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 }
 
 .contact-details h4 {
@@ -749,7 +749,7 @@ body {
 
 .social-buttons .btn {
     flex: 1;
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     padding: 0.5rem 1rem;
 }
 
@@ -938,6 +938,8 @@ body {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
+        display: flex;
+        flex-direction: row;
     }
 
     .hero-title {
