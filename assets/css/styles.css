@@ -1,0 +1,997 @@
+/*
+ * Arquivo: styles.css
+ * Descrição: Estilos CSS principais para as páginas de portfólio (Web e Design).
+ * Autor: Rodolpho Rapôso
+ */
+
+/* Variáveis CSS para cores e tamanhos */
+:root {
+    --cor-primaria: #8e2b3c; /* Verde-água */
+    --cor-secundaria: #e9c46a; /* Amarelo ouro */
+    --cor-texto: #fefefe; /* Branco quase puro */
+    --cor-fundo: #1b1b1e; /* Azul escuro */
+    --cor-fundo-claro: #1b1b1e; /* Azul médio para seções claras */
+    --cor-sombra: rgba(0, 0, 0, 0.2); /* Sombra padrão */
+    --cor-borda: rgba(255, 255, 255, 0.1); /* Borda sutil */
+    --fonte-principal: 'Inter', sans-serif; /* Fonte principal */
+    --transicao-padrao: all 0.3s ease-in-out; /* Transição para interações */
+    --form-bg: rgba(245, 240, 230, 0.08); /* Fundo para o formulário */
+    --radius: 10px; /* Raio de borda padrão para elementos */
+    --shadow: 0 5px 20px var(--cor-sombra); /* Sombra padrão para elementos */
+}
+
+/* Reset de estilos para todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos globais para o corpo da página */
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    overflow-x: hidden; /* Evita rolagem horizontal */
+    display: block; /* Garante que body não seja flexbox por padrão aqui (útil se o index.html for flex) */
+    min-height: 100vh; /* Garante que o body ocupe a altura total */
+}
+
+/* Contêiner central para limitar a largura do conteúdo */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem; /* Ajuste para melhor espaçamento lateral */
+}
+
+/* Estilos de link padrão */
+a {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transition: var(--transicao-padrao);
+}
+
+a:hover {
+    color: var(--cor-secundaria);
+}
+
+/* Efeito de hover para links */
+.link-hover:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+/* Classes para cores de destaque */
+.destaque {
+    color: var(--cor-primaria);
+}
+
+/* Estilos de botão */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 5px;
+    font-weight: 600; /* Levemente mais negrito */
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transicao-padrao);
+    border: 2px solid transparent; /* Adiciona borda transparente para evitar "pulo" no hover */
+    font-size: 1rem;
+}
+
+.btn-primario {
+    background-color: var(--cor-primaria);
+    color: var(--cor-fundo);
+    border-color: var(--cor-primaria);
+}
+
+.btn-primario:hover {
+    background-color: #f5f5e6; /* Um tom ligeiramente mais escuro */
+    color: var(--cor-fundo);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--cor-sombra);
+}
+
+.btn-secundario {
+    background-color: transparent;
+    color: var(--cor-texto);
+    border-color: var(--cor-primaria);
+}
+
+.btn-secundario:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-fundo);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--cor-sombra);
+}
+
+.btn-contorno {
+    background-color: transparent;
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-borda);
+    padding: 0.6rem 1.5rem;
+}
+
+.btn-contorno:hover {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px var(--cor-sombra);
+}
+
+/* Header */
+.cabecalho {
+    background-color: var(--cor-fundo);
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--cor-borda);
+    position: sticky; /* Sticky para fixar no topo */
+    top: 0;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    box-shadow: 0 2px 10px var(--cor-sombra);
+}
+
+.conteudo-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--cor-texto);
+    text-decoration: none;
+}
+
+.icone-logo {
+    background-color: var(--cor-primaria);
+    color: var(--cor-fundo);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.texto-logo {
+    color: var(--cor-texto);
+}
+
+.navegacao-desktop .link-nav {
+    margin-left: 1.5rem;
+    font-weight: 500;
+    color: var(--cor-texto);
+    position: relative;
+}
+
+.navegacao-desktop .link-nav::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--cor-primaria);
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease-out;
+}
+
+.navegacao-desktop .link-nav:hover::after,
+.navegacao-desktop .link-nav.ativo::after {
+    width: 100%;
+}
+
+.contato-mobile {
+    display: none; /* Escondido no desktop */
+}
+
+.btn-menu-mobile {
+    display: none; /* Escondido no desktop */
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--cor-texto);
+    cursor: pointer;
+}
+
+.navegacao-mobile {
+    display: none; /* Escondido por padrão */
+    flex-direction: column;
+    background-color: var(--cor-fundo-claro);
+    position: absolute;
+    top: 100%; /* Abaixo do cabeçalho */
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    box-shadow: 0 5px 10px var(--cor-sombra);
+}
+
+.navegacao-mobile.ativo {
+    display: flex;
+}
+
+.navegacao-mobile .link-nav {
+    padding: 0.8rem 2rem;
+    color: var(--cor-texto);
+    text-align: center;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.navegacao-mobile .link-nav:last-child {
+    border-bottom: none;
+}
+
+/* Seção Hero (Início) */
+.hero {
+    min-height: calc(100vh - 80px); /* Altura da tela menos o cabeçalho */
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.conteudo-hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.texto-hero {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+    animation: fadeInSlideRight 1s ease-out forwards;
+}
+
+.intro-hero {
+    font-size: 1.2rem;
+    color: var(--cor-primaria);
+    margin-bottom: 0.5rem;
+}
+
+.titulo-hero {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.nome-hero {
+    color: var(--cor-secundaria);
+}
+
+.descricao-hero {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    min-height: 2.5em; /* Para manter o layout durante o efeito de digitação */
+}
+
+.botoes-hero .btn {
+    margin-right: 1rem;
+    margin-bottom: 1rem; /* Para responsividade */
+}
+
+.imagem-hero {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 2rem; /* Espaçamento interno para a sombra e borda */
+    animation: fadeInSlideLeft 1s ease-out forwards;
+}
+
+.fundo-imagem-hero {
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    background-color: var(--cor-primaria);
+    border-radius: 50%;
+    filter: blur(50px); /* Efeito de brilho */
+    opacity: 0.4;
+    z-index: 0;
+    transition: transform 0.5s ease-out;
+}
+
+.imagem-hero:hover .fundo-imagem-hero {
+    transform: scale(1.05);
+}
+
+.foto-hero {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 50%;
+    border: 1px solid var(--cor-texto);
+    box-shadow: 0 0 25px var(--cor-primaria);
+    position: relative;
+    z-index: 1;
+    object-fit: cover;
+    transition: transform 0.5s ease-out;
+}
+
+.imagem-hero:hover .foto-hero {
+    transform: scale(1.02) rotate(3deg);
+}
+
+.estatisticas-hero {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0; /* Inicia invisível para animação */
+}
+
+.item-estatistica {
+    text-align: center;
+    min-width: 150px;
+}
+
+.numero-estatistica {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--cor-secundaria);
+    margin-bottom: 0.5rem;
+}
+
+.texto-estatistica {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* Seções gerais */
+.secao {
+    padding: 6rem 0; /* Espaçamento padrão para seções */
+    position: relative;
+    overflow: hidden; /* Garante que elementos filhos que extravasem fiquem escondidos */
+}
+
+.secao.bg-claro {
+    background-color: var(--cor-fundo-claro);
+}
+
+.cabecalho-secao {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.tag-secao {
+    display: inline-block;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-fundo);
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.cabecalho-secao h2 {
+    font-size: 3rem;
+    color: var(--cor-texto);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.cabecalho-secao .destaque {
+    color: var(--cor-primaria);
+}
+
+.subtitulo-secao {
+    font-size: 1.1rem;
+    color: var(--cor-texto);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Seção Sobre Mim */
+.conteudo-sobre {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagem-sobre {
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    position: relative;
+    text-align: center;
+}
+
+.imagem-sobre img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px var(--cor-sombra);
+}
+
+.texto-sobre {
+    flex: 2;
+    min-width: 300px;
+}
+
+.texto-sobre p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.botoes-sobre .btn {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Seção de Habilidades */
+.grid-habilidades {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.categoria-habilidade {
+    background-color: var(--cor-fundo);
+    border-radius: 10px;
+    padding: 2.5rem;
+    box-shadow: 0 5px 20px var(--cor-sombra);
+    text-align: center;
+    transition: var(--transicao-padrao);
+    border: 1px solid var(--cor-borda);
+}
+
+.categoria-habilidade:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px var(--cor-sombra);
+    border-color: var(--cor-primaria);
+}
+
+.categoria-habilidade h3 {
+    font-size: 1.8rem;
+    color: var(--cor-primaria);
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.categoria-habilidade h3::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--cor-secundaria);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.itens-habilidade {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.item-habilidade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--cor-texto);
+}
+
+.icone-habilidade {
+    font-size: 2.5rem;
+    color: var(--cor-secundaria);
+    margin-bottom: 0.5rem;
+}
+
+/* Seção de Projetos */
+.grid-projetos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.item-projeto { /* Alterado de .card-projeto para .item-projeto */
+    background-color: var(--cor-fundo-claro);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px var(--cor-sombra);
+    transition: var(--transicao-padrao);
+    border: 1px solid var(--cor-borda);
+    display: flex;
+    flex-direction: column;
+}
+
+.item-projeto:hover { /* Alterado de .card-projeto para .item-projeto */
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px var(--cor-sombra);
+    border-color: var(--cor-primaria);
+}
+
+.item-projeto img { /* Alterado de .imagem-projeto para .item-projeto img */
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.item-projeto:hover img { /* Alterado de .card-projeto:hover .imagem-projeto para .item-projeto:hover img */
+    transform: scale(1.05);
+}
+
+.item-projeto h3 { /* Alterado de .info-projeto h3 para .item-projeto h3 */
+    font-size: 1.6rem;
+    color: var(--cor-primaria);
+    margin-bottom: 0.8rem;
+    padding: 0 1.8rem; /* Adicionado padding para os títulos dentro do item */
+}
+
+.item-projeto p { /* Alterado de .descricao-projeto para .item-projeto p */
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Permite que a descrição ocupe o espaço restante */
+    padding: 0 1.8rem; /* Adicionado padding para as descrições dentro do item */
+}
+
+.botoes-projeto { /* Mantenha esta classe se já existir */
+    padding: 1.8rem; /* Padding para os botões dentro do item */
+    display: flex;
+    gap: 1rem;
+    margin-top: auto; /* Empurra os botões para o final do card */
+}
+
+.btn-todos-projetos {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* Seção de Experiência */
+.linha-do-tempo {
+    position: relative;
+    max-width: 900px;
+    margin: 3rem auto;
+    padding-left: 25px; /* Espaço para a linha */
+    border-left: 2px solid var(--cor-borda);
+}
+
+.item-linha-do-tempo {
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 30px; /* Espaço para o círculo do item */
+}
+
+.item-linha-do-tempo::before {
+    content: '';
+    position: absolute;
+    left: -10px; /* Alinha com a linha do tempo */
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--cor-primaria);
+    border-radius: 50%;
+    border: 3px solid var(--cor-fundo);
+    z-index: 1;
+}
+
+.item-linha-do-tempo .periodo {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--cor-secundaria);
+    margin-bottom: 0.5rem;
+}
+
+.item-linha-do-tempo h3 {
+    font-size: 1.5rem;
+    color: var(--cor-texto);
+    margin-bottom: 0.5rem;
+}
+
+.item-linha-do-tempo .empresa {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.item-linha-do-tempo .descricao {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/*
+* ESTILOS DO FORMULÁRIO DE CONTATO (AJUSTADOS)
+*/
+
+.conteudo-contato {
+    display: grid;
+    grid-template-columns: 1fr; /* Coluna única por padrão em mobile */
+    gap: 3rem;
+    align-items: flex-start; /* Alinha o conteúdo ao topo */
+}
+
+@media (min-width: 992px) {
+    .conteudo-contato {
+        grid-template-columns: 0.7fr 1.3fr; /* Proporção para a info e o formulário em desktop */
+    }
+}
+
+.informacoes-contato {
+    background-color: var(--cor-fundo-claro);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.item-info-contato {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: var(--cor-texto);
+}
+
+.item-info-contato:last-child {
+    margin-bottom: 0;
+}
+
+.item-info-contato i {
+    font-size: 1.5rem;
+    color: var(--cor-primaria);
+    margin-right: 1rem;
+    width: 30px; /* Garante alinhamento consistente dos ícones */
+    text-align: center;
+}
+
+.item-info-contato p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.formulario-contato {
+    background-color: var(--form-bg); /* Usando uma nova variável para o fundo do formulário */
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espaçamento entre os grupos de formulário */
+}
+
+.form-group {
+    margin-bottom: 0; /* Resetar o margin-bottom se já houver nos .form-group */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    font-size: 1rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background-color: rgba(255, 255, 255, 0.05); /* Fundo mais escuro para os campos */
+    border: 1px solid var(--cor-borda);
+    border-radius: 5px;
+    color: var(--cor-texto);
+    font-family: var(--fonte-principal);
+    font-size: 1rem;
+    transition: border-color var(--transicao-padrao), box-shadow var(--transicao-padrao);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    border-color: var(--cor-primaria);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.3); /* Sombra de foco com a cor primária */
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 120px; /* Altura mínima para o campo de mensagem */
+}
+
+/* Botão de Envio do Formulário */
+.formulario-contato .btn {
+    align-self: flex-start; /* Alinha o botão à esquerda dentro do formulário */
+    margin-top: 1rem; /* Espaçamento extra acima do botão */
+    /* Já herda os estilos de .btn e .btn-primario */
+}
+
+/* Rodapé */
+.rodape {
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-texto);
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.conteudo-rodape {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.links-sociais {
+    display: flex;
+    gap: 1rem;
+}
+
+.links-sociais a {
+    color: var(--cor-texto);
+    font-size: 1.5rem;
+    transition: var(--transicao-padrao);
+}
+
+.links-sociais a:hover {
+    color: var(--cor-primaria);
+}
+
+/* Animações */
+@keyframes fadeInSlideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInSlideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.revelar {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.revelar.ativo {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* * Responsividade Geral
+*/
+@media (max-width: 992px) {
+    .conteudo-cabecalho {
+        padding: 0 1.5rem; /* Ajuste para espaçamento em telas menores */
+    }
+
+    .navegacao-desktop, .contato-mobile {
+        display: none; /* Esconde navegação desktop e botão de contato no menu mobile */
+    }
+
+    .btn-menu-mobile {
+        display: block; /* Mostra o botão de menu mobile */
+    }
+
+    .navegacao-mobile {
+        position: fixed; /* Fixa o menu mobile */
+        top: 0;
+        right: -100%; /* Inicia fora da tela */
+        width: 70%; /* Largura do menu */
+        height: 100%;
+        background-color: var(--cor-fundo-claro);
+        padding-top: 5rem; /* Espaço para o cabeçalho */
+        box-shadow: -5px 0 15px var(--cor-sombra);
+        transition: right 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    .navegacao-mobile.ativo {
+        right: 0; /* Desliza para dentro */
+    }
+
+    .navegacao-mobile .link-nav {
+        padding: 1.2rem 1.5rem;
+        font-size: 1.1rem;
+        text-align: left;
+    }
+
+    .hero {
+        text-align: center;
+        min-height: auto;
+        padding-top: 6rem; /* Mais padding para conteúdo não ficar atrás do header */
+    }
+
+    .conteudo-hero {
+        flex-direction: column-reverse; /* Imagem acima do texto em mobile */
+        gap: 2rem;
+    }
+
+    .texto-hero {
+        text-align: center;
+    }
+
+    .titulo-hero {
+        font-size: 2.5rem;
+    }
+
+    .descricao-hero {
+        font-size: 1rem;
+    }
+
+    .botoes-hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imagem-hero {
+        padding: 0;
+    }
+
+    .foto-hero {
+        max-width: 250px;
+    }
+
+    .estatisticas-hero {
+        margin-top: 3rem;
+        gap: 1.5rem;
+    }
+
+    .item-estatistica {
+        min-width: unset; /* Remove min-width para melhor flexibilidade */
+        width: 48%; /* Duas colunas em telas menores */
+    }
+
+    .numero-estatistica {
+        font-size: 2rem;
+    }
+
+    .secao {
+        padding: 4rem 0;
+    }
+
+    .cabecalho-secao h2 {
+        font-size: 2rem;
+    }
+
+    .subtitulo-secao {
+        font-size: 1rem;
+    }
+
+    .conteudo-sobre {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .imagem-sobre {
+        max-width: 350px;
+    }
+
+    .botoes-sobre {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .botoes-sobre .btn {
+        margin: 0;
+        width: 100%; /* Botões de sobre ocupam toda largura */
+    }
+
+    .grid-habilidades, .grid-projetos {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        gap: 2rem;
+    }
+
+    .categoria-habilidade {
+        padding: 2rem;
+    }
+
+    .categoria-habilidade h3 {
+        font-size: 1.5rem;
+    }
+
+    .icone-habilidade {
+        font-size: 2rem;
+    }
+
+    .linha-do-tempo {
+        padding-left: 20px; /* Ajuste para a linha do tempo */
+    }
+
+    .item-linha-do-tempo {
+        padding-left: 25px;
+    }
+
+    .item-linha-do-tempo::before {
+        left: -8px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .item-linha-do-tempo h3 {
+        font-size: 1.3rem;
+    }
+
+    .item-linha-do-tempo .empresa {
+        font-size: 1rem;
+    }
+
+    /* Ajustes específicos do formulário em telas menores */
+    .conteudo-contato {
+        grid-template-columns: 1fr; /* Volta para coluna única em telas menores */
+        gap: 2rem;
+    }
+
+    .informacoes-contato,
+    .formulario-contato {
+        padding: 1.5rem; /* Reduz o padding em telas menores */
+    }
+
+    .item-info-contato p {
+        font-size: 1rem; /* Ajusta o tamanho da fonte */
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.9rem;
+    }
+
+    .formulario-contato .btn {
+        width: 100%; /* Botão ocupa a largura total em mobile */
+        text-align: center;
+    }
+
+    .rodape .conteudo-rodape {
+        flex-direction: column;
+    }
+}
+
+/* @media (max-width: 480px) { ... adicione mais ajustes finos se necessário para celulares muito pequenos } */

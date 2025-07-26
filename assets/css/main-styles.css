@@ -1,0 +1,355 @@
+/*
+ * Arquivo: main-styles.css
+ * Descrição: Estilos CSS para a tela inicial do portfólio principal.
+ * Autor: Rodolpho Rapôso
+ */
+
+/* Reset básico e definições de variáveis CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-fundo-principal: #1B1B1E; /* Fundo principal */
+    --cor-texto-principal: #F5F0E6; /* Cor do texto principal */
+    --cor-destaque-principal: #8B2E3C; /* Cor de destaque */
+    --cor-fundo-card: rgba(245, 240, 230, 0.05); /* Fundo dos cards (efeito de vidro) */
+    --cor-borda-card: rgba(245, 240, 230, 0.2); /* Cor da borda dos cards */
+    --sombra-card: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra dos cards */
+    --cor-brilho: rgba(255, 255, 255, 0.5); /* Cor do brilho nas bordas */
+    --transicao-rapida: all 0.3s ease-out; /* Transição rápida para efeitos */
+    --transicao-media: all 0.5s ease; /* Transição média para efeitos */
+}
+
+/* Estilos para o corpo da página */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    overflow: hidden; /* Evita rolagem desnecessária */
+}
+
+/* Container principal da tela inicial */
+.container-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem; /* Espaçamento entre seções */
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+}
+
+/* Seção de perfil (foto, nome, profissão) */
+.secao-perfil {
+    /* Animação de entrada */
+    animation: deslizarParaBaixo 1s ease-out forwards;
+}
+
+/* Estilos da foto de perfil */
+.foto-perfil {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; /* Torna a imagem circular */
+    object-fit: cover; /* Garante que a imagem preencha o círculo */
+    border: 2px solid var(--cor-destaque-principal); /* Borda da foto */
+    box-shadow: 0 0 20px rgba(139, 46, 60, 0.5); /* Leve brilho na foto */
+    margin-bottom: 1rem;
+    transition: var(--transicao-media); /* Transição suave */
+}
+
+/* Efeito de hover na foto de perfil */
+.foto-perfil:hover {
+    transform: scale(1.05) rotate(5deg); /* Aumenta e gira levemente */
+    box-shadow: 0 0 30px rgba(139, 46, 60, 0.8); /* Aumenta o brilho */
+}
+
+/* Estilos do nome no perfil */
+.nome-perfil {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--cor-texto-principal);
+    font-weight: 700;
+    /* Efeito de gradiente no texto */
+    background: linear-gradient(45deg, var(--cor-destaque-principal) 30%, var(--cor-texto-principal) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Animação de digitação (typewriter) */
+    animation: digitarNome 2s steps(20, end) forwards;
+    overflow: hidden; /* Necessário para o efeito de digitação */
+    white-space: nowrap; /* Necessário para o efeito de digitação */
+    border-right: .15em solid rgba(255,255,255,.75); /* Cursor piscando */
+    width: 0; /* Inicia com largura zero para a animação */
+}
+
+/* Animação de digitação do nome */
+@keyframes digitarNome {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Animação do cursor (opcional) */
+.nome-perfil {
+    animation: digitarNome 2s steps(20, end) forwards,
+               piscarCursor .75s step-end infinite;
+}
+
+@keyframes piscarCursor {
+    from, to { border-color: transparent }
+    50% { border-color: rgba(255,255,255,.75); }
+}
+
+/* Estilos da profissão no perfil */
+.profissao-perfil {
+    font-size: 1.5rem;
+    color: var(--cor-texto-principal);
+    opacity: 0; /* Inicia invisível */
+    /* Animação de entrada com atraso */
+    animation: deslizarParaCima 1s ease-out 2.5s forwards;
+}
+
+/* Container dos cards de portfólio */
+.container-cards {
+    display: flex;
+    gap: 2.5rem; /* Espaçamento entre os cards */
+    flex-wrap: wrap; /* Quebra linha em telas menores */
+    justify-content: center;
+    width: 100%;
+    opacity: 0; /* Inicia invisível */
+    /* Animação de entrada e escala com atraso */
+    animation: aparecerComEscala 1s ease-out 3s forwards;
+}
+
+/* Estilos gerais para os cards de portfólio */
+.card-portfolio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor-fundo-card); /* Fundo semi-transparente */
+    border: 1px solid var(--cor-borda-card); /* Borda sutil */
+    border-radius: 15px;
+    padding: 2.5rem;
+    text-decoration: none; /* Remove sublinhado */
+    color: var(--cor-texto-principal);
+    transition: var(--transicao-media); /* Transição suave */
+    width: 300px;
+    min-height: 250px;
+    position: relative;
+    overflow: hidden; /* Oculta partes que excedem o card */
+    cursor: pointer;
+    box-shadow: var(--sombra-card);
+    backdrop-filter: blur(10px); /* Efeito de vidro */
+    -webkit-backdrop-filter: blur(10px); /* Para compatibilidade */
+}
+
+/* Efeito de borda luminosa rotativa no hover */
+.card-portfolio::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        transparent,
+        rgba(255,255,255,0.1) 45%,
+        rgba(255,255,255,0.5) 50%,
+        rgba(255,255,255,0.1) 55%,
+        transparent
+    );
+    animation: girarBorda 4s linear infinite;
+    z-index: 0;
+    opacity: 0; /* Inicia invisível */
+    transition: opacity var(--transicao-rapida);
+}
+
+/* Torna a borda visível no hover */
+.card-portfolio:hover::before {
+    opacity: 1;
+}
+
+/* Camada interna para o efeito de vidro */
+.card-portfolio::after {
+    content: '';
+    position: absolute;
+    inset: 1px; /* Para ficar dentro da borda rotativa */
+    background-color: var(--cor-fundo-card);
+    border-radius: 14px;
+    z-index: 1;
+}
+
+/* Garante que o conteúdo fique acima da camada interna */
+.card-portfolio > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Efeito de hover no card */
+.card-portfolio:hover {
+    transform: translateY(-10px) scale(1.05); /* Desliza para cima e expande */
+    border-color: var(--cor-destaque-principal); /* Muda a cor da borda */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5),
+                0 0 25px rgba(255, 255, 255, 0.4); /* Adiciona brilho branco */
+}
+
+/* Estilos dos ícones dentro dos cards */
+.icone-card {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.3)); /* Sombra suave */
+    transition: var(--transicao-rapida);
+}
+
+/* Efeito de hover no ícone do card */
+.card-portfolio:hover .icone-card {
+    transform: scale(1.1) rotate(5deg); /* Aumenta e gira levemente */
+}
+
+/* Estilos dos títulos dentro dos cards */
+.titulo-card {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--cor-texto-principal);
+    transition: var(--transicao-rapida);
+}
+
+/* Efeito de hover no título do card */
+.card-portfolio:hover .titulo-card {
+    color: var(--cor-destaque-principal); /* Muda a cor do título */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Adiciona sombra ao texto */
+}
+
+
+/* Definição das Animações */
+/* Animação: deslizar de cima para baixo */
+@keyframes deslizarParaBaixo {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação: deslizar de baixo para cima */
+@keyframes deslizarParaCima {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação: aparecer e escalar */
+@keyframes aparecerComEscala {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animação: girar a borda */
+@keyframes girarBorda {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Preloader (tela de carregamento) */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-fundo-principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Garante que fique acima de tudo */
+    opacity: 1;
+    transition: opacity 0.5s ease; /* Transição para sumir */
+}
+
+/* Animação do carregador (spinner) */
+.carregador {
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-top: 8px solid var(--cor-destaque-principal);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: girar 1s linear infinite;
+}
+
+@keyframes girar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .nome-perfil {
+        font-size: 2.5rem;
+    }
+    .profissao-perfil {
+        font-size: 1.2rem;
+    }
+    .container-principal {
+        gap: 2rem;
+    }
+    .container-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .card-portfolio {
+        width: 90%;
+        max-width: 300px;
+        padding: 2rem;
+        min-height: 200px;
+    }
+    .icone-card {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1rem;
+    }
+    .titulo-card {
+        font-size: 1.5rem;
+    }
+}
+
+/* Responsividade para celulares */
+@media (max-width: 480px) {
+    .nome-perfil {
+        font-size: 2rem;
+    }
+    .profissao-perfil {
+        font-size: 1rem;
+    }
+    .foto-perfil {
+        width: 250px;
+        height: 250px;
+    }
+}
