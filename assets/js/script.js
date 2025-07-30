@@ -142,4 +142,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
+
+    // Função para mostrar/ocultar projetos
+    function configurarMostrarProjetos(btnId, containerProjetosClass) {
+        const btnVerTodos = document.getElementById(btnId);
+        const projetosContainer = document.querySelector(containerProjetosClass);
+
+        if (btnVerTodos && projetosContainer) {
+            // Inicialmente, oculte os projetos a partir do quarto
+            const todosOsProjetos = projetosContainer.querySelectorAll('.item-projeto');
+            for (let i = 3; i < todosOsProjetos.length; i++) { // Começa do índice 3 (quarto projeto)
+                todosOsProjetos[i].classList.add('oculto');
+            }
+
+            btnVerTodos.addEventListener('click', (event) => {
+                event.preventDefault(); // Impede o comportamento padrão do link
+
+                const projetosOcultos = projetosContainer.querySelectorAll('.item-projeto.oculto');
+                if (projetosOcultos.length > 0) {
+                    projetosOcultos.forEach(projeto => {
+                        projeto.classList.remove('oculto');
+                        projeto.classList.add('revelar'); // Adiciona a classe revelar para a animação
+                        observadorRevelar.observe(projeto); // Observa para ativar a animação
+                    });
+                    btnVerTodos.style.display = 'none'; // Esconde o botão após revelar todos
+                }
+            });
+        }
+    }
+
+    // Chama a função para a página de Portfólio Web
+    if (paginaAtual === 'pagina-portfolio-web') {
+        configurarMostrarProjetos('btnVerTodosProjetosWeb', '.grid-projetos');
+    }
+
+    // Chama a função para a página de Portfólio Design
+    if (paginaAtual === 'pagina-portfolio-design') {
+        configurarMostrarProjetos('btnVerTodosProjetosDesign', '.grid-projetos');
+    }
 });

@@ -505,12 +505,12 @@ a:hover {
 /* Seção de Projetos */
 .grid-projetos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2.5rem;
     margin-top: 3rem;
 }
 
-.item-projeto { /* Alterado de .card-projeto para .item-projeto */
+.item-projeto { 
     background-color: var(--cor-fundo-claro);
     border-radius: 10px;
     overflow: hidden;
@@ -521,32 +521,34 @@ a:hover {
     flex-direction: column;
 }
 
-.item-projeto:hover { /* Alterado de .card-projeto para .item-projeto */
+.item-projeto:hover { 
     transform: translateY(-10px);
     box-shadow: 0 15px 30px var(--cor-sombra);
     border-color: var(--cor-primaria);
 }
 
-.item-projeto img { /* Alterado de .imagem-projeto para .item-projeto img */
+.item-projeto img { 
     width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
     transition: transform 0.5s ease;
 }
 
-.item-projeto:hover img { /* Alterado de .card-projeto:hover .imagem-projeto para .item-projeto:hover img */
+.item-projeto:hover img { 
     transform: scale(1.05);
 }
 
-.item-projeto h3 { /* Alterado de .info-projeto h3 para .item-projeto h3 */
+.item-projeto h3 { 
     font-size: 1.6rem;
     color: var(--cor-primaria);
     margin-bottom: 0.8rem;
     padding: 0 1.8rem; /* Adicionado padding para os títulos dentro do item */
 }
 
-.item-projeto p { /* Alterado de .descricao-projeto para .item-projeto p */
+.item-projeto p { 
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.75);
     margin-bottom: 1rem;
@@ -994,4 +996,211 @@ a:hover {
     }
 }
 
-/* @media (max-width: 480px) { ... adicione mais ajustes finos se necessário para celulares muito pequenos } */
+/* ------------------------------------------- */
+/* Ajustes para Telas Extremamente Pequenas (ex: Apple Watch - max-width: 320px) */
+/* ------------------------------------------- */
+
+@media (max-width: 320px) {
+    body {
+        font-size: 14px; /* Tamanho de fonte base para telas muito pequenas */
+    }
+
+    /* Cabeçalho */
+    .cabecalho .logo {
+        font-size: 1.2rem; /* Reduz o tamanho da fonte do logo */
+        padding: 0.5rem 0.8rem;
+    }
+
+    .cabecalho .icone-logo {
+        width: 30px; /* Reduz o tamanho do ícone do logo */
+        height: 30px;
+        font-size: 1.1rem;
+    }
+
+    /* Menu Mobile */
+    .btn-menu-mobile {
+        font-size: 1.5rem; /* Ajusta o tamanho do ícone do menu */
+    }
+
+    .nav-mobile {
+        width: 100%; /* Garante que ocupe a largura total */
+        padding: 1rem;
+    }
+
+    .nav-mobile ul li a {
+        font-size: 1.1rem; /* Reduz o tamanho dos links do menu */
+        padding: 0.8rem 0;
+    }
+
+    /* Seção Hero */
+    .secao-hero h1 {
+        font-size: 2rem; /* Título principal menor */
+        line-height: 1.2;
+    }
+
+    .secao-hero .descricao-hero {
+        font-size: 0.95rem; /* Descrição menor */
+        padding: 0 10px; /* Reduz o padding lateral */
+    }
+
+    .secao-hero .btn-hero {
+        padding: 0.8rem 1.5rem; /* Botão menor */
+        font-size: 0.9rem;
+    }
+
+    /* Seções Gerais */
+    section {
+        padding: 3rem 1rem; /* Reduz o padding geral das seções */
+    }
+
+    .titulo-secao {
+        font-size: 1.8rem; /* Títulos das seções menores */
+        margin-bottom: 2rem;
+    }
+
+    /* Seção Sobre Mim */
+    .conteudo-sobre {
+        flex-direction: column; /* Garante que o texto e imagem fiquem em coluna */
+        gap: 1.5rem;
+    }
+
+    .conteudo-sobre img {
+        width: 120px; /* Reduz o tamanho da imagem de perfil */
+        height: 120px;
+    }
+
+    .texto-sobre p {
+        font-size: 0.9rem; /* Texto sobre menor */
+    }
+
+    /* Seção Habilidades */
+    .container-habilidades {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* 2 ou 1 coluna */
+        gap: 1rem; /* Espaçamento menor entre as habilidades */
+    }
+
+    .card-habilidade {
+        padding: 0.8rem;
+        min-height: 110px;
+    }
+
+    .icone-habilidade {
+        font-size: 1.8rem; /* Ícones de habilidade menores */
+        margin-bottom: 0.5rem;
+    }
+
+    .card-habilidade h3 {
+        font-size: 0.9rem; /* Título da habilidade menor */
+    }
+
+    /* Linha do Tempo (Experiência/Educação) */
+    .linha-do-tempo {
+        padding-left: 15px; /* Reduz o padding para a linha */
+    }
+
+    .item-linha-do-tempo {
+        padding-left: 20px; /* Reduz o padding do item */
+        margin-bottom: 1.5rem; /* Espaçamento menor entre os itens */
+    }
+
+    .item-linha-do-tempo::before {
+        left: -5px; /* Ajusta a posição do círculo */
+        width: 12px;
+        height: 12px;
+    }
+
+    .item-linha-do-tempo h3 {
+        font-size: 1.1rem; /* Título do item da linha do tempo */
+    }
+
+    .item-linha-do-tempo .empresa,
+    .item-linha-do-tempo .data {
+        font-size: 0.8rem; /* Texto menor para empresa/data */
+    }
+
+    .item-linha-do-tempo p {
+        font-size: 0.85rem; /* Descrição do item */
+    }
+
+    /* Seção Portfólio (Cards de Projeto) */
+    .grid-portfolio {
+        grid-template-columns: 1fr; /* Um projeto por linha */
+        gap: 1.5rem; /* Espaçamento entre projetos */
+    }
+
+    .item-portfolio {
+        padding: 1rem;
+    }
+
+    .item-portfolio h3 {
+        font-size: 1.2rem; /* Título do projeto menor */
+    }
+
+    .item-portfolio p {
+        font-size: 0.9rem; /* Descrição do projeto menor */
+    }
+
+    .item-portfolio .btn-projeto {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+
+    /* Seção Contato */
+    .conteudo-contato {
+        grid-template-columns: 1fr; /* Uma coluna para informações e formulário */
+        gap: 2rem;
+    }
+
+    .informacoes-contato,
+    .formulario-contato {
+        padding: 1.5rem; /* Reduz o padding das caixas de contato/formulário */
+    }
+
+    .item-info-contato {
+        margin-bottom: 1.2rem; /* Espaçamento menor entre itens de contato */
+    }
+
+    .item-info-contato i {
+        font-size: 1.3rem; /* Ícone de contato menor */
+    }
+
+    .item-info-contato p {
+        font-size: 0.9rem; /* Texto de informações de contato menor */
+    }
+
+    .form-group label {
+        font-size: 0.85rem; /* Labels do formulário menores */
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 0.7rem; /* Campos de input menores */
+        font-size: 0.9rem;
+    }
+
+    .formulario-contato .btn {
+        padding: 0.8rem 1.5rem; /* Botão de envio menor */
+        font-size: 0.9rem;
+    }
+
+    /* Rodapé */
+    .conteudo-rodape {
+        flex-direction: column; /* Empilha copyright e links sociais */
+        gap: 0.8rem;
+        text-align: center;
+    }
+
+    .rodape p {
+        font-size: 0.8rem; /* Texto do copyright menor */
+    }
+
+    .links-sociais a {
+        font-size: 1.2rem; /* Ícones sociais menores */
+        margin: 0 0.4rem; /* Espaçamento menor entre os ícones */
+    }
+}
+
+/* Estilos para ocultar projetos extras */
+.item-projeto.oculto {
+    display: none;
+}

@@ -20,222 +20,127 @@
     --sombra-card: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra dos cards */
     --cor-brilho: rgba(255, 255, 255, 0.5); /* Cor do brilho nas bordas */
     --transicao-rapida: all 0.3s ease-out; /* Transição rápida para efeitos */
-    --transicao-media: all 0.5s ease; /* Transição média para efeitos */
+    --transicao-media: all 0.5s ease; /* Transição média para elementos maiores */
 }
 
-/* Estilos para o corpo da página */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--cor-fundo-principal);
     color: var(--cor-texto-principal);
+    background-color: var(--cor-fundo-principal);
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+    /* REMOVIDO: height: 100vh; - Deixamos o conteúdo determinar a altura */
+}
+
+/* Estilos para a página inicial */
+#pagina-inicial {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* AJUSTADO: Usamos min-height para permitir que o conteúdo adicione scroll se necessário */
     min-height: 100vh;
-    padding: 2rem;
-    overflow: hidden; /* Evita rolagem desnecessária */
+    padding: 2rem 1rem; /* Adiciona um padding geral para evitar conteúdo colado nas bordas */
+    box-sizing: border-box; /* Garante que o padding seja incluído na largura/altura */
 }
 
-/* Container principal da tela inicial */
 .container-principal {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Organiza perfil e cards em coluna */
+    justify-content: center;
     align-items: center;
-    gap: 3rem; /* Espaçamento entre seções */
-    text-align: center;
-    max-width: 900px;
-    width: 100%;
+    gap: 3rem; /* Espaçamento entre a seção de perfil e os cards */
+    width: 100%; /* Ocupa a largura total disponível */
+    max-width: 1200px; /* Limita a largura máxima para telas grandes */
+    padding: 20px; /* Padding interno */
+    /* REMOVIDO: height: 100%; - Agora o min-height do body/pagina-inicial cuida disso */
+    box-sizing: border-box; /* Garante que o padding seja incluído na largura/altura */
 }
 
-/* Seção de perfil (foto, nome, profissão) */
+/* Seção de perfil */
 .secao-perfil {
-    /* Animação de entrada */
-    animation: deslizarParaBaixo 1s ease-out forwards;
+    text-align: center;
+    opacity: 0; /* Inicia invisível para a animação */
+    transform: translateY(20px); /* Inicia ligeiramente abaixo */
+    animation: fadeInSlideUp 1s ease forwards; /* Aplica a animação */
 }
 
-/* Estilos da foto de perfil */
 .foto-perfil {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%; /* Torna a imagem circular */
-    object-fit: cover; /* Garante que a imagem preencha o círculo */
-    border: 2px solid var(--cor-destaque-principal); /* Borda da foto */
-    box-shadow: 0 0 20px rgba(139, 46, 60, 0.5); /* Leve brilho na foto */
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--cor-destaque-principal);
+    object-fit: cover;
     margin-bottom: 1rem;
-    transition: var(--transicao-media); /* Transição suave */
+    box-shadow: var(--sombra-card);
 }
 
-/* Efeito de hover na foto de perfil */
-.foto-perfil:hover {
-    transform: scale(1.05) rotate(5deg); /* Aumenta e gira levemente */
-    box-shadow: 0 0 30px rgba(139, 46, 60, 0.8); /* Aumenta o brilho */
-}
-
-/* Estilos do nome no perfil */
 .nome-perfil {
     font-size: 3.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--cor-texto-principal);
     font-weight: 700;
-    /* Efeito de gradiente no texto */
-    background: linear-gradient(45deg, var(--cor-destaque-principal) 30%, var(--cor-texto-principal) 90%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    /* Animação de digitação (typewriter) */
-    animation: digitarNome 2s steps(20, end) forwards;
-    overflow: hidden; /* Necessário para o efeito de digitação */
-    white-space: nowrap; /* Necessário para o efeito de digitação */
-    border-right: .15em solid rgba(255,255,255,.75); /* Cursor piscando */
-    width: 0; /* Inicia com largura zero para a animação */
+    margin-bottom: 0.5rem;
+    /* Adiciona um efeito de cursor para a digitação, será removido via JS */
+    border-right: 2px solid var(--cor-destaque-principal);
+    white-space: nowrap; /* Impede quebra de linha */
+    overflow: hidden; /* Esconde texto antes da animação */
 }
 
-/* Animação de digitação do nome */
-@keyframes digitarNome {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-/* Animação do cursor (opcional) */
-.nome-perfil {
-    animation: digitarNome 2s steps(20, end) forwards,
-               piscarCursor .75s step-end infinite;
-}
-
-@keyframes piscarCursor {
-    from, to { border-color: transparent }
-    50% { border-color: rgba(255,255,255,.75); }
-}
-
-/* Estilos da profissão no perfil */
 .profissao-perfil {
     font-size: 1.5rem;
-    color: var(--cor-texto-principal);
-    opacity: 0; /* Inicia invisível */
-    /* Animação de entrada com atraso */
-    animation: deslizarParaCima 1s ease-out 2.5s forwards;
+    font-weight: 400;
+    color: rgba(245, 240, 230, 0.8);
 }
 
 /* Container dos cards de portfólio */
 .container-cards {
     display: flex;
+    flex-wrap: wrap; /* PERMITE QUE OS CARDS QUEBREM A LINHA */
+    justify-content: center; /* Centraliza os cards */
     gap: 2.5rem; /* Espaçamento entre os cards */
-    flex-wrap: wrap; /* Quebra linha em telas menores */
-    justify-content: center;
     width: 100%;
-    opacity: 0; /* Inicia invisível */
-    /* Animação de entrada e escala com atraso */
-    animation: aparecerComEscala 1s ease-out 3s forwards;
 }
 
-/* Estilos gerais para os cards de portfólio */
 .card-portfolio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--cor-fundo-card); /* Fundo semi-transparente */
-    border: 1px solid var(--cor-borda-card); /* Borda sutil */
+    background: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda-card);
     border-radius: 15px;
-    padding: 2.5rem;
-    text-decoration: none; /* Remove sublinhado */
+    padding: 2rem;
+    text-align: center;
+    text-decoration: none;
     color: var(--cor-texto-principal);
-    transition: var(--transicao-media); /* Transição suave */
-    width: 300px;
-    min-height: 250px;
-    position: relative;
-    overflow: hidden; /* Oculta partes que excedem o card */
-    cursor: pointer;
+    transition: var(--transicao-rapida);
     box-shadow: var(--sombra-card);
     backdrop-filter: blur(10px); /* Efeito de vidro */
-    -webkit-backdrop-filter: blur(10px); /* Para compatibilidade */
+    -webkit-backdrop-filter: blur(10px);
+    display: flex; /* Para centralizar o ícone e o título */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 280px; /* Largura padrão para desktop */
+    min-height: 200px; /* Altura mínima para garantir consistência */
 }
 
-/* Efeito de borda luminosa rotativa no hover */
-.card-portfolio::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(
-        transparent,
-        rgba(255,255,255,0.1) 45%,
-        rgba(255,255,255,0.5) 50%,
-        rgba(255,255,255,0.1) 55%,
-        transparent
-    );
-    animation: girarBorda 4s linear infinite;
-    z-index: 0;
-    opacity: 0; /* Inicia invisível */
-    transition: opacity var(--transicao-rapida);
-}
-
-/* Torna a borda visível no hover */
-.card-portfolio:hover::before {
-    opacity: 1;
-}
-
-/* Camada interna para o efeito de vidro */
-.card-portfolio::after {
-    content: '';
-    position: absolute;
-    inset: 1px; /* Para ficar dentro da borda rotativa */
-    background-color: var(--cor-fundo-card);
-    border-radius: 14px;
-    z-index: 1;
-}
-
-/* Garante que o conteúdo fique acima da camada interna */
-.card-portfolio > * {
-    position: relative;
-    z-index: 2;
-}
-
-/* Efeito de hover no card */
 .card-portfolio:hover {
-    transform: translateY(-10px) scale(1.05); /* Desliza para cima e expande */
-    border-color: var(--cor-destaque-principal); /* Muda a cor da borda */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5),
-                0 0 25px rgba(255, 255, 255, 0.4); /* Adiciona brilho branco */
+    transform: translateY(-10px) scale(1.03);
+    border-color: var(--cor-destaque-principal);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
-/* Estilos dos ícones dentro dos cards */
 .icone-card {
     width: 80px;
     height: 80px;
-    margin-bottom: 1.5rem;
-    filter: drop-shadow(0 0 8px rgba(255,255,255,0.3)); /* Sombra suave */
-    transition: var(--transicao-rapida);
+    margin-bottom: 1rem;
+    object-fit: contain; /* Garante que o ícone se ajuste sem cortar */
 }
 
-/* Efeito de hover no ícone do card */
-.card-portfolio:hover .icone-card {
-    transform: scale(1.1) rotate(5deg); /* Aumenta e gira levemente */
-}
-
-/* Estilos dos títulos dentro dos cards */
 .titulo-card {
     font-size: 1.8rem;
     font-weight: 600;
-    color: var(--cor-texto-principal);
-    transition: var(--transicao-rapida);
 }
 
-/* Efeito de hover no título do card */
-.card-portfolio:hover .titulo-card {
-    color: var(--cor-destaque-principal); /* Muda a cor do título */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Adiciona sombra ao texto */
-}
-
-
-/* Definição das Animações */
-/* Animação: deslizar de cima para baixo */
-@keyframes deslizarParaBaixo {
+/* Animações */
+@keyframes fadeInSlideUp {
     from {
         opacity: 0;
-        transform: translateY(-50px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -243,41 +148,7 @@ body {
     }
 }
 
-/* Animação: deslizar de baixo para cima */
-@keyframes deslizarParaCima {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Animação: aparecer e escalar */
-@keyframes aparecerComEscala {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* Animação: girar a borda */
-@keyframes girarBorda {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Preloader (tela de carregamento) */
+/* Preloader */
 .preloader {
     position: fixed;
     top: 0;
@@ -308,48 +179,132 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Responsividade para telas menores */
+/* ------------------------------------------- */
+/* Responsividade para Telas Menores */
+/* ------------------------------------------- */
+
+/* Para telas de até 768px de largura (Tablets e Smartphones) */
 @media (max-width: 768px) {
-    .nome-perfil {
-        font-size: 2.5rem;
+    #pagina-inicial {
+        padding: 1.5rem 1rem; /* Ajusta o padding para telas menores */
     }
-    .profissao-perfil {
-        font-size: 1.2rem;
-    }
+
     .container-principal {
-        gap: 2rem;
+        gap: 2.5rem; /* Reduz o espaço entre as seções */
     }
+
+    .nome-perfil {
+        font-size: 2.5rem; /* Reduz o tamanho da fonte do nome */
+    }
+
+    .profissao-perfil {
+        font-size: 1.2rem; /* Reduz o tamanho da fonte da profissão */
+    }
+
     .container-cards {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
+        flex-direction: column; /* Empilha os cards verticalmente */
+        align-items: center; /* Centraliza os cards */
+        gap: 1.5rem; /* Espaçamento entre os cards empilhados */
     }
+
     .card-portfolio {
-        width: 90%;
-        max-width: 300px;
-        padding: 2rem;
-        min-height: 200px;
+        width: 85%; /* Cards ocupam 85% da largura da tela */
+        max-width: 320px; /* Garante que o card não fique muito largo em tablets */
+        padding: 1.5rem; /* Ajusta o padding interno do card */
     }
+
     .icone-card {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 1rem;
+        width: 70px;
+        height: 70px;
     }
+
     .titulo-card {
         font-size: 1.5rem;
     }
 }
 
-/* Responsividade para celulares */
+/* Para telas de até 480px de largura (Smartphones) */
 @media (max-width: 480px) {
-    .nome-perfil {
-        font-size: 2rem;
+    #pagina-inicial {
+        padding: 1rem 0.8rem; /* Reduz ainda mais o padding */
     }
-    .profissao-perfil {
-        font-size: 1rem;
+
+    .container-principal {
+        gap: 2rem; /* Ajusta o espaçamento */
     }
+
     .foto-perfil {
-        width: 250px;
-        height: 250px;
+        width: 120px;
+        height: 120px;
+    }
+
+    .nome-perfil {
+        font-size: 2rem; /* Tamanho para smartphones */
+    }
+
+    .profissao-perfil {
+        font-size: 1rem; /* Tamanho para smartphones */
+    }
+
+    .card-portfolio {
+        width: 90%; /* Aumenta um pouco a largura para preencher mais */
+        max-width: 280px; /* Limita o tamanho máximo para evitar cards muito grandes */
+        padding: 1.2rem;
+    }
+
+    .icone-card {
+        width: 60px;
+        height: 60px;
+    }
+
+    .titulo-card {
+        font-size: 1.3rem;
+    }
+}
+
+/* Para telas muito pequenas (Apple Watch, até 320px de largura) */
+@media (max-width: 320px) {
+    #pagina-inicial {
+        padding: 0.8rem 0.5rem; /* Padding mínimo */
+        min-height: 100vh; /* Mantém a altura mínima da viewport */
+    }
+
+    .container-principal {
+        gap: 1.5rem; /* Espaçamento bem apertado */
+    }
+
+    .foto-perfil {
+        width: 100px;
+        height: 100px;
+    }
+
+    .nome-perfil {
+        font-size: 1rem; /* Tamanho para Apple Watch */
+        margin-bottom: 0.3rem;
+    }
+
+    .profissao-perfil {
+        font-size: 0.7rem; /* Tamanho para Apple Watch */
+    }
+
+    .container-cards {
+        gap: 1rem; /* Espaçamento mínimo entre cards */
+    }
+
+    .card-portfolio {
+        width: 95%; /* Ocupa quase toda a largura */
+        max-width: 260px; /* Garante que não exceda muito */
+        padding: 1rem; /* Padding interno mínimo */
+        min-height: 160px; /* Altura mínima para que caiba o conteúdo */
+    }
+
+    .icone-card {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 0.8rem;
+    }
+
+    .titulo-card {
+        font-size: 0.8rem;
     }
 }
