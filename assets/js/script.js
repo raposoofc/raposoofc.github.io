@@ -1,9 +1,3 @@
-/*
- * Arquivo: script.js
- * Descrição: Script JavaScript principal para as páginas de portfólio (Web e Design).
- * Autor: Rodolpho Rapôso
- */
-
 document.addEventListener('DOMContentLoaded', () => {
 
     // Chave Pública do EmailJS (Substitua pela sua chave real)
@@ -53,100 +47,88 @@ document.addEventListener('DOMContentLoaded', () => {
         observadorRevelar.observe(elemento);
     });
 
-    // Função para preloader (se existir na página)
-    function configurarPreloader(idPreloader) {
-        const preloader = document.querySelector(`.${idPreloader}`);
-        if (preloader) {
-            window.addEventListener('load', () => {
-                preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.remove();
-                }, 500);
+    // Função para alternar entre abas (Tecnologias, Ferramentas, etc.)
+    function configurarAbas(idContainerAbas) {
+        const containerAbas = document.getElementById(idContainerAbas);
+        if (containerAbas) {
+            const botoesAbas = containerAbas.querySelectorAll('.btn-aba');
+            const conteudosAbas = containerAbas.querySelectorAll('.conteudo-aba');
+
+            botoesAbas.forEach(botao => {
+                botao.addEventListener('click', () => {
+                    // Remove 'ativo' de todos os botões e conteúdos
+                    botoesAbas.forEach(b => b.classList.remove('ativo'));
+                    conteudosAbas.forEach(c => c.classList.remove('ativo'));
+
+                    // Adiciona 'ativo' ao botão clicado
+                    botao.classList.add('ativo');
+
+                    // Ativa o conteúdo da aba correspondente
+                    const idConteudo = botao.getAttribute('data-tab');
+                    const conteudoAtivo = document.getElementById(idConteudo);
+                    if (conteudoAtivo) {
+                        conteudoAtivo.classList.add('ativo');
+                    }
+                });
             });
-        }
-    }
 
-    // Função para o efeito de digitação
-    function configurarEfeitoDigitacao(seletorDescricao) {
-        const descricaoHero = document.querySelector(seletorDescricao);
-        if (descricaoHero) {
-            const textoParaDigitar = descricaoHero.getAttribute('data-texto');
-            descricaoHero.textContent = ''; // Limpa o texto inicial
-            let indiceChar = 0;
-            let estaApagando = false;
-            let velocidadeDigitacao = 100; // Velocidade inicial
-
-            function digitar() {
-                const textoAtual = textoParaDigitar.substring(0, indiceChar);
-                descricaoHero.textContent = textoAtual;
-
-                if (!estaApagando && indiceChar < textoParaDigitar.length) {
-                    indiceChar++;
-                    velocidadeDigitacao = 100;
-                } else if (estaApagando && indiceChar > 0) {
-                    indiceChar--;
-                    velocidadeDigitacao = 50;
-                }
-
-                if (!estaApagando && indiceChar === textoParaDigitar.length) {
-                    // Terminou de digitar, espera um pouco e começa a apagar
-                    velocidadeDigitacao = 2000; // Tempo antes de apagar
-                    estaApagando = true;
-                } else if (estaApagando && indiceChar === 0) {
-                    // Terminou de apagar, espera um pouco e começa a digitar novamente
-                    velocidadeDigitacao = 500; // Tempo antes de digitar novamente
-                    estaApagando = false;
-                }
-
-                setTimeout(digitar, velocidadeDigitacao);
-            }
-
-            // Inicia o efeito de digitação apenas na página relevante
-            if (paginaAtual === 'pagina-portfolio-web' && seletorDescricao === '.descricao-hero') {
-                digitar();
-            } else if (paginaAtual === 'pagina-portfolio-design' && seletorDescricao === '.descricao-hero') {
-                digitar();
+            // Ativar a primeira aba por padrão
+            if (botoesAbas.length > 0) {
+                botoesAbas[0].click();
             }
         }
     }
 
-    // Configura o efeito de digitação para a descrição do herói em ambas as páginas
-    configurarEfeitoDigitacao('.descricao-hero');
+    // Chama a função para a seção de Habilidades do Portfólio Web
+    if (paginaAtual === 'pagina-portfolio-web') {
+        configurarAbas('habilidades-web');
+    }
 
-    // Configura o preloader (se aplicável, com a classe correta do preloader)
-    // Se você tiver um preloader com a classe 'loader-web' ou 'loader-design', descomente a linha abaixo e ajuste.
-    // configurarPreloader('loader-web');
-    // configurarPreloader('loader-design');
+    // Chama a função para a seção de Habilidades do Portfólio Design
+    if (paginaAtual === 'pagina-portfolio-design') {
+        configurarAbas('habilidades-design');
+    }
+
 
     /*
-     * Lógica de Envio de Formulário com EmailJS (Unificado)
+     * Funcionalidades Específicas da Página de Contato
      */
-    const contactForm = document.getElementById('contact-form');
+    const formContato = document.getElementById('formContato');
+    if (formContato) {
+        formContato.addEventListener('submit', function (event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Impede o envio padrão do formulário e o recarregamento da página
+            // Captura os valores dos campos do formulário
+            const nome = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const mensagem = document.getElementById('message').value;
 
-            // Seus IDs do EmailJS fornecidos:
-            const serviceID = 'service_kalwx5d'; // Service ID
-            const templateID = 'template_3vioc2s'; // Template ID
+            // Prepara os parâmetros para o EmailJS
+            const templateParams = {
+                from_name: nome,
+                from_email: email,
+                message: mensagem
+            };
 
-            // Envia o formulário usando EmailJS
-            emailjs.sendForm(serviceID, templateID, this)
-                .then(function() {
-                    alert('Mensagem enviada com sucesso! Em breve entrarei em contato.');
-                    contactForm.reset(); // Limpa o formulário após o envio
-                }, function(error) {
-                    alert('Oops! Houve um problema ao enviar a mensagem. Por favor, tente novamente mais tarde.');
-                    console.error('EmailJS Erro:', error); // Exibe o erro no console para depuração
+            // Envia o e-mail usando o EmailJS
+            emailjs.send('service_7s92m6e', 'template_j51d2f8', templateParams)
+                .then(function (response) {
+                    console.log('E-mail enviado com sucesso!', response.status, response.text);
+                    alert('Sua mensagem foi enviada com sucesso! Em breve entrarei em contato.');
+                    formContato.reset(); // Limpa o formulário
+                }, function (error) {
+                    console.error('Erro ao enviar e-mail:', error);
+                    alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.');
                 });
         });
     }
 
-    // Função para mostrar/ocultar projetos
-    function configurarMostrarProjetos(btnId, containerProjetosClass) {
-        const btnVerTodos = document.getElementById(btnId);
-        const projetosContainer = document.querySelector(containerProjetosClass);
+    /*
+     * Funcionalidade "Ver Todos os Projetos"
+     */
+    function configurarMostrarProjetos(idBotao, seletorContainerProjetos) {
+        const btnVerTodos = document.getElementById(idBotao);
+        const projetosContainer = document.querySelector(seletorContainerProjetos);
 
         if (btnVerTodos && projetosContainer) {
             // Inicialmente, oculte os projetos a partir do quarto
@@ -180,4 +162,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (paginaAtual === 'pagina-portfolio-design') {
         configurarMostrarProjetos('btnVerTodosProjetosDesign', '.grid-projetos');
     }
+
+    // Bloquear download de imagens (clique direito e arrastar)
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+        img.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+        });
+    });
 });

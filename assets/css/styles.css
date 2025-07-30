@@ -510,7 +510,7 @@ a:hover {
     margin-top: 3rem;
 }
 
-.item-projeto { 
+.item-projeto {
     background-color: var(--cor-fundo-claro);
     border-radius: 10px;
     overflow: hidden;
@@ -521,13 +521,13 @@ a:hover {
     flex-direction: column;
 }
 
-.item-projeto:hover { 
+.item-projeto:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px var(--cor-sombra);
     border-color: var(--cor-primaria);
 }
 
-.item-projeto img { 
+.item-projeto img {
     width: 100%;
     height: auto;
     justify-content: center;
@@ -537,18 +537,18 @@ a:hover {
     transition: transform 0.5s ease;
 }
 
-.item-projeto:hover img { 
+.item-projeto:hover img {
     transform: scale(1.05);
 }
 
-.item-projeto h3 { 
+.item-projeto h3 {
     font-size: 1.6rem;
     color: var(--cor-primaria);
     margin-bottom: 0.8rem;
     padding: 0 1.8rem; /* Adicionado padding para os títulos dentro do item */
 }
 
-.item-projeto p { 
+.item-projeto p {
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.75);
     margin-bottom: 1rem;
@@ -1002,166 +1002,273 @@ a:hover {
 
 @media (max-width: 320px) {
     body {
-        font-size: 14px; /* Tamanho de fonte base para telas muito pequenas */
+        font-size: 13px; /* Tamanho de fonte base ainda menor para telas muito pequenas */
+    }
+
+    .container {
+        padding: 0 0.8rem; /* Reduz o padding lateral do container */
     }
 
     /* Cabeçalho */
+    .cabecalho {
+        padding: 0.8rem 0;
+    }
+
     .cabecalho .logo {
-        font-size: 1.2rem; /* Reduz o tamanho da fonte do logo */
-        padding: 0.5rem 0.8rem;
+        font-size: 1.4rem; /* Ajuste para manter a legibilidade */
     }
 
     .cabecalho .icone-logo {
-        width: 30px; /* Reduz o tamanho do ícone do logo */
-        height: 30px;
-        font-size: 1.1rem;
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+        margin-right: 0.3rem;
     }
 
     /* Menu Mobile */
     .btn-menu-mobile {
-        font-size: 1.5rem; /* Ajusta o tamanho do ícone do menu */
+        font-size: 1.8rem; /* Ícone do menu um pouco menor */
     }
 
-    .nav-mobile {
-        width: 100%; /* Garante que ocupe a largura total */
-        padding: 1rem;
+    .navegacao-mobile {
+        width: 85%; /* Menu um pouco mais estreito */
+        padding-top: 4rem; /* Ajuste para o cabeçalho menor */
     }
 
-    .nav-mobile ul li a {
-        font-size: 1.1rem; /* Reduz o tamanho dos links do menu */
-        padding: 0.8rem 0;
+    .navegacao-mobile .link-nav {
+        padding: 1rem 1rem;
+        font-size: 1rem;
     }
 
     /* Seção Hero */
-    .secao-hero h1 {
+    .hero {
+        padding-top: 5rem; /* Ajuste para o cabeçalho menor */
+        padding-bottom: 3rem;
+    }
+
+    .intro-hero {
+        font-size: 1rem; /* Introdução menor */
+    }
+
+    .titulo-hero {
         font-size: 2rem; /* Título principal menor */
-        line-height: 1.2;
+        margin-bottom: 0.8rem;
     }
 
-    .secao-hero .descricao-hero {
-        font-size: 0.95rem; /* Descrição menor */
-        padding: 0 10px; /* Reduz o padding lateral */
+    .descricao-hero {
+        font-size: 0.9rem; /* Descrição menor */
+        margin-bottom: 1.5rem;
+        min-height: unset; /* Remove min-height para flexibilidade em telas pequenas */
     }
 
-    .secao-hero .btn-hero {
-        padding: 0.8rem 1.5rem; /* Botão menor */
+    .botoes-hero .btn {
+        padding: 0.7rem 1.2rem; /* Botões menores */
         font-size: 0.9rem;
+        margin-right: 0.5rem; /* Espaçamento entre botões */
+        margin-bottom: 0.8rem;
+    }
+
+    .imagem-hero {
+        min-width: unset; /* Permite que a imagem se ajuste melhor */
+    }
+
+    .foto-hero {
+        max-width: 200px; /* Foto ainda menor */
+        width: 80%; /* Garante que ela ocupe uma proporção da largura */
+    }
+
+    .estatisticas-hero {
+        margin-top: 2rem;
+        gap: 1rem;
+        justify-content: center; /* Centraliza as estatísticas */
+    }
+
+    .item-estatistica {
+        min-width: 100px; /* Ajuste para caber 2 por linha confortavelmente */
+        width: 45%; /* Garante que duas colunas caibam */
+    }
+
+    .numero-estatistica {
+        font-size: 1.8rem; /* Números menores */
+        margin-bottom: 0.3rem;
+    }
+
+    .texto-estatistica {
+        font-size: 0.85rem; /* Texto das estatísticas menor */
     }
 
     /* Seções Gerais */
-    section {
-        padding: 3rem 1rem; /* Reduz o padding geral das seções */
+    .secao {
+        padding: 3rem 0; /* Reduz o padding geral das seções */
     }
 
-    .titulo-secao {
-        font-size: 1.8rem; /* Títulos das seções menores */
+    .cabecalho-secao {
         margin-bottom: 2rem;
+    }
+
+    .tag-secao {
+        padding: 0.2rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .cabecalho-secao h2 {
+        font-size: 1.8rem; /* Títulos das seções menores */
+        margin-bottom: 0.8rem;
+    }
+
+    .subtitulo-secao {
+        font-size: 0.9rem; /* Subtítulo menor */
+        padding: 0 0.5rem; /* Ajuste de padding */
     }
 
     /* Seção Sobre Mim */
     .conteudo-sobre {
-        flex-direction: column; /* Garante que o texto e imagem fiquem em coluna */
-        gap: 1.5rem;
+        gap: 2rem;
     }
 
-    .conteudo-sobre img {
-        width: 120px; /* Reduz o tamanho da imagem de perfil */
-        height: 120px;
+    .imagem-sobre {
+        max-width: 250px; /* Imagem sobre menor */
+    }
+
+    .imagem-sobre img {
+        border-radius: 5px; /* Bordas um pouco menos arredondadas */
     }
 
     .texto-sobre p {
         font-size: 0.9rem; /* Texto sobre menor */
+        margin-bottom: 1rem;
+    }
+
+    .botoes-sobre .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
     }
 
     /* Seção Habilidades */
-    .container-habilidades {
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* 2 ou 1 coluna */
-        gap: 1rem; /* Espaçamento menor entre as habilidades */
+    .grid-habilidades {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Garante pelo menos 2 por linha se possível */
+        gap: 1.5rem; /* Espaçamento menor entre as habilidades */
     }
 
-    .card-habilidade {
-        padding: 0.8rem;
-        min-height: 110px;
+    .categoria-habilidade {
+        padding: 1.5rem;
+    }
+
+    .categoria-habilidade h3 {
+        font-size: 1.3rem; /* Título da categoria menor */
+        margin-bottom: 1rem;
+    }
+
+    .categoria-habilidade h3::after {
+        width: 40px; /* Linha de destaque menor */
     }
 
     .icone-habilidade {
-        font-size: 1.8rem; /* Ícones de habilidade menores */
+        font-size: 2rem; /* Ícones de habilidade menores */
+        margin-bottom: 0.3rem;
+    }
+
+    .item-habilidade {
+        font-size: 0.85rem; /* Texto da habilidade menor */
+    }
+
+    /* Seção de Projetos */
+    .grid-projetos {
+        gap: 1.5rem;
+    }
+
+    .item-projeto {
+        padding-bottom: 1rem; /* Reduz o padding inferior */
+    }
+
+    .item-projeto img {
+        height: 150px; /* Altura fixa para as imagens dos projetos, evitando imagens muito grandes ou muito pequenas */
+        object-fit: cover; /* Garante que a imagem preencha o espaço */
+    }
+
+    .item-projeto h3 {
+        font-size: 1.3rem; /* Título do projeto menor */
         margin-bottom: 0.5rem;
+        padding: 0 1rem; /* Reduz padding lateral do título */
     }
 
-    .card-habilidade h3 {
-        font-size: 0.9rem; /* Título da habilidade menor */
+    .item-projeto p {
+        font-size: 0.85rem; /* Descrição do projeto menor */
+        margin-bottom: 0.8rem;
+        padding: 0 1rem; /* Reduz padding lateral da descrição */
     }
 
-    /* Linha do Tempo (Experiência/Educação) */
+    .botoes-projeto {
+        padding: 1rem; /* Reduz o padding dos botões */
+        gap: 0.8rem;
+        flex-direction: column; /* Botões empilhados */
+        align-items: center;
+    }
+    .botoes-projeto .btn {
+        width: 100%; /* Botões ocupam a largura total */
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-todos-projetos {
+        margin-top: 2rem;
+    }
+
+    /* Linha do Tempo (Experiência) */
     .linha-do-tempo {
-        padding-left: 15px; /* Reduz o padding para a linha */
+        padding-left: 18px; /* Reduz o padding para a linha */
+        margin: 2rem auto;
     }
 
     .item-linha-do-tempo {
-        padding-left: 20px; /* Reduz o padding do item */
+        padding-left: 22px; /* Reduz o padding do item */
         margin-bottom: 1.5rem; /* Espaçamento menor entre os itens */
     }
 
     .item-linha-do-tempo::before {
-        left: -5px; /* Ajusta a posição do círculo */
-        width: 12px;
-        height: 12px;
+        left: -6px; /* Ajusta a posição do círculo */
+        width: 14px;
+        height: 14px;
+        border-width: 2px; /* Borda do círculo menor */
+    }
+
+    .item-linha-do-tempo .periodo {
+        font-size: 0.8rem;
+        margin-bottom: 0.3rem;
     }
 
     .item-linha-do-tempo h3 {
-        font-size: 1.1rem; /* Título do item da linha do tempo */
+        font-size: 1.2rem; /* Título do item da linha do tempo */
+        margin-bottom: 0.3rem;
     }
 
-    .item-linha-do-tempo .empresa,
-    .item-linha-do-tempo .data {
-        font-size: 0.8rem; /* Texto menor para empresa/data */
+    .item-linha-do-tempo .empresa {
+        font-size: 0.9rem; /* Texto menor para empresa */
+        margin-bottom: 0.8rem;
     }
 
-    .item-linha-do-tempo p {
+    .item-linha-do-tempo .descricao {
         font-size: 0.85rem; /* Descrição do item */
-    }
-
-    /* Seção Portfólio (Cards de Projeto) */
-    .grid-portfolio {
-        grid-template-columns: 1fr; /* Um projeto por linha */
-        gap: 1.5rem; /* Espaçamento entre projetos */
-    }
-
-    .item-portfolio {
-        padding: 1rem;
-    }
-
-    .item-portfolio h3 {
-        font-size: 1.2rem; /* Título do projeto menor */
-    }
-
-    .item-portfolio p {
-        font-size: 0.9rem; /* Descrição do projeto menor */
-    }
-
-    .item-portfolio .btn-projeto {
-        padding: 0.7rem 1.2rem;
-        font-size: 0.85rem;
     }
 
     /* Seção Contato */
     .conteudo-contato {
-        grid-template-columns: 1fr; /* Uma coluna para informações e formulário */
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     .informacoes-contato,
     .formulario-contato {
-        padding: 1.5rem; /* Reduz o padding das caixas de contato/formulário */
+        padding: 1.2rem; /* Reduz o padding das caixas de contato/formulário */
     }
 
     .item-info-contato {
-        margin-bottom: 1.2rem; /* Espaçamento menor entre itens de contato */
+        margin-bottom: 1rem; /* Espaçamento menor entre itens de contato */
     }
 
     .item-info-contato i {
-        font-size: 1.3rem; /* Ícone de contato menor */
+        font-size: 1.2rem; /* Ícone de contato menor */
+        margin-right: 0.8rem;
+        width: 25px;
     }
 
     .item-info-contato p {
@@ -1169,38 +1276,363 @@ a:hover {
     }
 
     .form-group label {
-        font-size: 0.85rem; /* Labels do formulário menores */
+        font-size: 0.8rem; /* Labels do formulário menores */
     }
 
-    .form-group input,
+    .form-group input[type="text"],
+    .form-group input[type="email"],
     .form-group textarea {
-        padding: 0.7rem; /* Campos de input menores */
-        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem; /* Campos de input menores */
+        font-size: 0.85rem;
+    }
+
+    .form-group textarea {
+        min-height: 100px; /* Altura mínima da textarea menor */
     }
 
     .formulario-contato .btn {
-        padding: 0.8rem 1.5rem; /* Botão de envio menor */
+        padding: 0.7rem 1.2rem; /* Botão de envio menor */
         font-size: 0.9rem;
+        margin-top: 0.8rem;
     }
 
     /* Rodapé */
+    .rodape {
+        padding: 1.5rem 0;
+    }
+
     .conteudo-rodape {
-        flex-direction: column; /* Empilha copyright e links sociais */
-        gap: 0.8rem;
-        text-align: center;
+        gap: 0.6rem;
     }
 
     .rodape p {
-        font-size: 0.8rem; /* Texto do copyright menor */
+        font-size: 0.75rem; /* Texto do copyright menor */
     }
 
     .links-sociais a {
-        font-size: 1.2rem; /* Ícones sociais menores */
-        margin: 0 0.4rem; /* Espaçamento menor entre os ícones */
+        font-size: 1.1rem; /* Ícones sociais menores */
+        margin: 0 0.3rem; /* Espaçamento menor entre os ícones */
+    }
+}
+
+/* ------------------------------------------- */
+/* Ajustes para Telas Extremamente Pequenas (ex: Apple Watch - max-width: 162px) */
+/* ------------------------------------------- */
+
+@media (max-width: 162px) {
+    body {
+        font-size: 12px; /* Tamanho de fonte base ainda menor */
+    }
+
+    .container {
+        padding: 0 0.5rem; /* Padding lateral ainda mais reduzido */
+    }
+
+    /* Cabeçalho */
+    .cabecalho {
+        padding: 0.6rem 0;
+    }
+
+    .cabecalho .logo {
+        font-size: 1.1rem; /* Logo ainda menor */
+    }
+
+    .cabecalho .icone-logo {
+        width: 25px;
+        height: 25px;
+        font-size: 0.9rem;
+    }
+
+    /* Menu Mobile */
+    .btn-menu-mobile {
+        font-size: 1.6rem;
+    }
+
+    .navegacao-mobile {
+        width: 90%; /* Menu mobile quase na largura total */
+        padding-top: 3.5rem;
+    }
+
+    .navegacao-mobile .link-nav {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Seção Hero */
+    .hero {
+        padding-top: 4rem;
+        padding-bottom: 2rem;
+    }
+
+    .intro-hero {
+        font-size: 0.8rem;
+    }
+
+    .titulo-hero {
+        font-size: 1.6rem; /* Título principal bem menor */
+        margin-bottom: 0.5rem;
+    }
+
+    .descricao-hero {
+        font-size: 0.8rem; /* Descrição menor */
+        margin-bottom: 1rem;
+    }
+
+    .botoes-hero {
+        flex-direction: column; /* Garantir que os botões fiquem empilhados */
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .botoes-hero .btn {
+        padding: 0.6rem 1rem; /* Botões ainda menores */
+        font-size: 0.8rem;
+        width: 90%; /* Ocupar quase a largura total */
+        margin-right: 0; /* Remove margem lateral */
+    }
+
+    .foto-hero {
+        max-width: 150px; /* Foto ainda menor */
+        width: 70%;
+    }
+
+    .estatisticas-hero {
+        margin-top: 1.5rem;
+        gap: 0.5rem;
+        flex-direction: column; /* Estatísticas empilhadas se necessário */
+    }
+
+    .item-estatistica {
+        width: 90%; /* Ocupar quase a largura total */
+        min-width: unset;
+        font-size: 0.75rem;
+    }
+
+    .numero-estatistica {
+        font-size: 1.5rem; /* Números ainda menores */
+        margin-bottom: 0.2rem;
+    }
+
+    .texto-estatistica {
+        font-size: 0.7rem; /* Texto das estatísticas ainda menor */
+    }
+
+    /* Seções Gerais */
+    .secao {
+        padding: 2.5rem 0;
+    }
+
+    .cabecalho-secao {
+        margin-bottom: 1.5rem;
+    }
+
+    .tag-secao {
+        padding: 0.1rem 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    .cabecalho-secao h2 {
+        font-size: 1.5rem; /* Títulos das seções ainda menores */
+        margin-bottom: 0.6rem;
+    }
+
+    .subtitulo-secao {
+        font-size: 0.8rem;
+        padding: 0 0.3rem;
+    }
+
+    /* Seção Sobre Mim */
+    .conteudo-sobre {
+        gap: 1rem;
+    }
+
+    .imagem-sobre {
+        max-width: 150px;
+    }
+
+    .texto-sobre p {
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .botoes-sobre .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+        width: 90%;
+    }
+
+    /* Seção Habilidades */
+    .grid-habilidades {
+        grid-template-columns: 1fr; /* Forçar uma coluna */
+        gap: 1rem;
+    }
+
+    .categoria-habilidade {
+        padding: 1rem;
+    }
+
+    .categoria-habilidade h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .categoria-habilidade h3::after {
+        width: 30px;
+    }
+
+    .icone-habilidade {
+        font-size: 1.8rem;
+    }
+
+    .item-habilidade {
+        font-size: 0.75rem;
+    }
+
+    /* Seção de Projetos */
+    .grid-projetos {
+        gap: 1rem;
+    }
+
+    .item-projeto {
+        padding-bottom: 0.8rem;
+    }
+
+    .item-projeto img {
+        height: 100px; /* Altura fixa ainda menor para imagens */
+    }
+
+    .item-projeto h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+        padding: 0 0.8rem;
+    }
+
+    .item-projeto p {
+        font-size: 0.75rem;
+        margin-bottom: 0.6rem;
+        padding: 0 0.8rem;
+    }
+
+    .botoes-projeto {
+        padding: 0.8rem;
+        gap: 0.6rem;
+    }
+    .botoes-projeto .btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .btn-todos-projetos {
+        margin-top: 1.5rem;
+    }
+
+    /* Linha do Tempo (Experiência) */
+    .linha-do-tempo {
+        padding-left: 15px;
+        margin: 1.5rem auto;
+    }
+
+    .item-linha-do-tempo {
+        padding-left: 18px;
+        margin-bottom: 1rem;
+    }
+
+    .item-linha-do-tempo::before {
+        left: -4px;
+        width: 10px;
+        height: 10px;
+        border-width: 1px;
+    }
+
+    .item-linha-do-tempo .periodo {
+        font-size: 0.75rem;
+    }
+
+    .item-linha-do-tempo h3 {
+        font-size: 1rem;
+    }
+
+    .item-linha-do-tempo .empresa {
+        font-size: 0.8rem;
+    }
+
+    .item-linha-do-tempo .descricao {
+        font-size: 0.75rem;
+    }
+
+    /* Seção Contato */
+    .conteudo-contato {
+        gap: 1rem;
+    }
+
+    .informacoes-contato,
+    .formulario-contato {
+        padding: 1rem;
+    }
+
+    .item-info-contato {
+        margin-bottom: 0.8rem;
+    }
+
+    .item-info-contato i {
+        font-size: 1rem;
+        margin-right: 0.6rem;
+        width: 20px;
+    }
+
+    .item-info-contato p {
+        font-size: 0.8rem;
+    }
+
+    .form-group label {
+        font-size: 0.75rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .form-group textarea {
+        min-height: 80px;
+    }
+
+    .formulario-contato .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+        margin-top: 0.6rem;
+    }
+
+    /* Rodapé */
+    .rodape {
+        padding: 1rem 0;
+    }
+
+    .conteudo-rodape {
+        gap: 0.5rem;
+    }
+
+    .rodape p {
+        font-size: 0.7rem;
+    }
+
+    .links-sociais a {
+        font-size: 1rem;
+        margin: 0 0.2rem;
     }
 }
 
 /* Estilos para ocultar projetos extras */
 .item-projeto.oculto {
     display: none;
+}
+
+/* Bloqueia a seleção de texto em todo o corpo da página */
+body {
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE/Edge */
+    user-select: none;          /* Padrão */
 }

@@ -1,8 +1,3 @@
-/*
- * Arquivo: main-script.js
- * Descrição: Script JavaScript para a tela inicial do portfólio principal.
- * Autor: Rodolpho Rapôso
- */
 
 document.addEventListener('DOMContentLoaded', () => {
     // Esconder o preloader quando a página estiver totalmente carregada
@@ -39,5 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(digitarTexto, 1500);
     }
 
-    console.log('🚀 Tela inicial do Portfólio carregada com sucesso!');
+    // Bloquear download de imagens (clique direito e arrastar)
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+        img.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+        });
+    });
+
 });
