@@ -12,23 +12,32 @@
 }
 
 :root {
-    --cor-fundo-principal: #1B1B1E; /* Fundo principal */
-    --cor-texto-principal: #F5F0E6; /* Cor do texto principal */
-    --cor-destaque-principal: #8B2E3C; /* Cor de destaque */
-    --cor-fundo-card: rgba(245, 240, 230, 0.05); /* Fundo dos cards (efeito de vidro) */
-    --cor-borda-card: rgba(245, 240, 230, 0.2); /* Cor da borda dos cards */
-    --sombra-card: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra dos cards */
-    --cor-brilho: rgba(255, 255, 255, 0.5); /* Cor do brilho nas bordas */
-    --transicao-rapida: all 0.3s ease-out; /* Transição rápida para efeitos */
-    --transicao-media: all 0.5s ease; /* Transição média para elementos maiores */
+    --cor-fundo-principal: #1B1B1E;
+    /* Fundo principal */
+    --cor-texto-principal: #F5F0E6;
+    /* Cor do texto principal */
+    --cor-destaque-principal: #8B2E3C;
+    /* Cor de destaque */
+    --cor-fundo-card: rgba(245, 240, 230, 0.05);
+    /* Fundo dos cards (efeito de vidro) */
+    --cor-borda-card: rgba(245, 240, 230, 0.2);
+    /* Cor da borda dos cards */
+    --sombra-card: 0 8px 16px rgba(0, 0, 0, 0.3);
+    /* Sombra dos cards */
+    --cor-brilho: rgba(255, 255, 255, 0.5);
+    /* Cor do brilho nas bordas */
+    --transicao-rapida: all 0.3s ease-out;
+    /* Transição rápida para efeitos */
+    --transicao-media: all 0.5s ease;
+    /* Transição média para elementos maiores */
 }
 
 body {
     font-family: 'Inter', sans-serif;
     color: var(--cor-texto-principal);
     background-color: var(--cor-fundo-principal);
-    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
-    /* REMOVIDO: height: 100vh; - Deixamos o conteúdo determinar a altura */
+    overflow-x: hidden;
+    /* Evita rolagem horizontal indesejada */
 }
 
 /* Estilos para a página inicial */
@@ -36,31 +45,29 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* AJUSTADO: Usamos min-height para permitir que o conteúdo adicione scroll se necessário */
     min-height: 100vh;
-    padding: 2rem 1rem; /* Adiciona um padding geral para evitar conteúdo colado nas bordas */
-    box-sizing: border-box; /* Garante que o padding seja incluído na largura/altura */
+    padding: 2rem 1rem;
+    box-sizing: border-box;
 }
 
 .container-principal {
     display: flex;
-    flex-direction: column; /* Organiza perfil e cards em coluna */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3rem; /* Espaçamento entre a seção de perfil e os cards */
-    width: 100%; /* Ocupa a largura total disponível */
-    max-width: 1200px; /* Limita a largura máxima para telas grandes */
-    padding: 20px; /* Padding interno */
-    /* REMOVIDO: height: 100%; - Agora o min-height do body/pagina-inicial cuida disso */
-    box-sizing: border-box; /* Garante que o padding seja incluído na largura/altura */
+    gap: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 /* Seção de perfil */
 .secao-perfil {
     text-align: center;
-    opacity: 0; /* Inicia invisível para a animação */
-    transform: translateY(20px); /* Inicia ligeiramente abaixo */
-    animation: fadeInSlideUp 1s ease forwards; /* Aplica a animação */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease forwards;
 }
 
 .foto-perfil {
@@ -74,13 +81,31 @@ body {
 }
 
 .nome-perfil {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    /* Adiciona um efeito de cursor para a digitação, será removido via JS */
-    border-right: 2px solid var(--cor-destaque-principal);
-    white-space: nowrap; /* Impede quebra de linha */
-    overflow: hidden; /* Esconde texto antes da animação */
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.2em;
+}
+
+/* Estilos para as letras individuais */
+.letra-nome {
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in-out;
+    padding: 0 1px;
+    color: var(--cor-texto-principal);
+}
+
+/* Classe para a letra que está "acesa" */
+.letra-brilho {
+    opacity: 1;
+    text-shadow: 0 0 5px var(--cor-destaque-principal),
+        0 0 10px var(--cor-destaque-principal),
+        0 0 15px var(--cor-destaque-principal);
 }
 
 .profissao-perfil {
@@ -92,9 +117,9 @@ body {
 /* Container dos cards de portfólio */
 .container-cards {
     display: flex;
-    flex-wrap: wrap; /* PERMITE QUE OS CARDS QUEBREM A LINHA */
-    justify-content: center; /* Centraliza os cards */
-    gap: 2.5rem; /* Espaçamento entre os cards */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
     width: 100%;
 }
 
@@ -108,14 +133,14 @@ body {
     color: var(--cor-texto-principal);
     transition: var(--transicao-rapida);
     box-shadow: var(--sombra-card);
-    backdrop-filter: blur(10px); /* Efeito de vidro */
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    display: flex; /* Para centralizar o ícone e o título */
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 280px; /* Largura padrão para desktop */
-    min-height: 200px; /* Altura mínima para garantir consistência */
+    width: 280px;
+    min-height: 200px;
 }
 
 .card-portfolio:hover {
@@ -128,7 +153,7 @@ body {
     width: 80px;
     height: 80px;
     margin-bottom: 1rem;
-    object-fit: contain; /* Garante que o ícone se ajuste sem cortar */
+    object-fit: contain;
 }
 
 .titulo-card {
@@ -142,6 +167,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -159,9 +185,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Garante que fique acima de tudo */
+    z-index: 9999;
     opacity: 1;
-    transition: opacity 0.5s ease; /* Transição para sumir */
+    transition: opacity 0.5s ease;
 }
 
 /* Animação do carregador (spinner) */
@@ -175,8 +201,13 @@ body {
 }
 
 @keyframes girar {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* ------------------------------------------- */
@@ -186,31 +217,31 @@ body {
 /* Para telas de até 768px de largura (Tablets e Smartphones) */
 @media (max-width: 768px) {
     #pagina-inicial {
-        padding: 1.5rem 1rem; /* Ajusta o padding para telas menores */
+        padding: 1.5rem 1rem;
     }
 
     .container-principal {
-        gap: 2.5rem; /* Reduz o espaço entre as seções */
+        gap: 2.5rem;
     }
 
     .nome-perfil {
-        font-size: 2.5rem; /* Reduz o tamanho da fonte do nome */
+        font-size: 3.5rem;
     }
 
     .profissao-perfil {
-        font-size: 1.2rem; /* Reduz o tamanho da fonte da profissão */
+        font-size: 1.2rem;
     }
 
     .container-cards {
-        flex-direction: column; /* Empilha os cards verticalmente */
-        align-items: center; /* Centraliza os cards */
-        gap: 1.5rem; /* Espaçamento entre os cards empilhados */
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
     }
 
     .card-portfolio {
-        width: 85%; /* Cards ocupam 85% da largura da tela */
-        max-width: 320px; /* Garante que o card não fique muito largo em tablets */
-        padding: 1.5rem; /* Ajusta o padding interno do card */
+        width: 85%;
+        max-width: 320px;
+        padding: 1.5rem;
     }
 
     .icone-card {
@@ -226,11 +257,11 @@ body {
 /* Para telas de até 480px de largura (Smartphones) */
 @media (max-width: 480px) {
     #pagina-inicial {
-        padding: 1rem 0.8rem; /* Reduz ainda mais o padding */
+        padding: 1rem 0.8rem;
     }
 
     .container-principal {
-        gap: 2rem; /* Ajusta o espaçamento */
+        gap: 2rem;
     }
 
     .foto-perfil {
@@ -239,16 +270,16 @@ body {
     }
 
     .nome-perfil {
-        font-size: 2rem; /* Tamanho para smartphones */
+        font-size: 2.5rem;
     }
 
     .profissao-perfil {
-        font-size: 1rem; /* Tamanho para smartphones */
+        font-size: 1rem;
     }
 
     .card-portfolio {
-        width: 90%; /* Aumenta um pouco a largura para preencher mais */
-        max-width: 280px; /* Limita o tamanho máximo para evitar cards muito grandes */
+        width: 90%;
+        max-width: 280px;
         padding: 1.2rem;
     }
 
@@ -262,15 +293,32 @@ body {
     }
 }
 
+/* Para telas de até 360px de largura */
+@media (max-width: 360px) {
+    .nome-perfil {
+        font-size: 2rem;
+    }
+
+    .profissao-perfil {
+        font-size: 0.9rem;
+    }
+
+    .card-portfolio {
+        width: 95%;
+        max-width: 280px;
+    }
+}
+
+
 /* Para telas muito pequenas (Apple Watch, até 320px de largura) */
 @media (max-width: 320px) {
     #pagina-inicial {
-        padding: 0.8rem 0.5rem; /* Padding mínimo */
-        min-height: 100vh; /* Mantém a altura mínima da viewport */
+        padding: 0.8rem 0.5rem;
+        min-height: 100vh;
     }
 
     .container-principal {
-        gap: 1.5rem; /* Espaçamento bem apertado */
+        gap: 1.5rem;
     }
 
     .foto-perfil {
@@ -279,23 +327,23 @@ body {
     }
 
     .nome-perfil {
-        font-size: 1rem; /* Tamanho para Apple Watch */
+        font-size: 1.8rem;
         margin-bottom: 0.3rem;
     }
 
     .profissao-perfil {
-        font-size: 0.7rem; /* Tamanho para Apple Watch */
+        font-size: 0.7rem;
     }
 
     .container-cards {
-        gap: 1rem; /* Espaçamento mínimo entre cards */
+        gap: 1rem;
     }
 
     .card-portfolio {
-        width: 95%; /* Ocupa quase toda a largura */
-        max-width: 260px; /* Garante que não exceda muito */
-        padding: 1rem; /* Padding interno mínimo */
-        min-height: 160px; /* Altura mínima para que caiba o conteúdo */
+        width: 95%;
+        max-width: 260px;
+        padding: 1rem;
+        min-height: 160px;
     }
 
     .icone-card {
@@ -311,8 +359,8 @@ body {
 
 /* Bloqueia a seleção de texto em todo o corpo da página */
 body {
-    -webkit-user-select: none;  /* Safari */
-    -moz-user-select: none;     /* Firefox */
-    -ms-user-select: none;      /* IE/Edge */
-    user-select: none;          /* Padrão */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

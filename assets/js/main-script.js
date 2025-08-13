@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     // Esconder o preloader quando a página estiver totalmente carregada
     window.addEventListener('load', () => {
@@ -11,27 +10,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Configuração da animação de digitação para o nome do perfil
+    // Animação de luz no nome
     const nomePerfil = document.querySelector('.nome-perfil');
     if (nomePerfil) {
-        // Armazena o texto original e limpa o elemento para a animação
+        // Quebra o texto em letras e cria um <span> para cada uma
         const textoOriginal = nomePerfil.textContent;
-        nomePerfil.textContent = '';
-        let indiceCaractere = 0;
+        nomePerfil.innerHTML = ''; // Limpa o conteúdo original
 
-        // Função para simular o efeito de digitação
-        const digitarTexto = () => {
-            if (indiceCaractere < textoOriginal.length) {
-                nomePerfil.textContent += textoOriginal.charAt(indiceCaractere);
-                indiceCaractere++;
-                setTimeout(digitarTexto, 100); // Velocidade da digitação (ms)
-            } else {
-                // Remove o cursor piscando após a digitação
-                nomePerfil.style.borderRight = 'none';
+        // Loop para criar um <span> para cada letra
+        for (let i = 0; i < textoOriginal.length; i++) {
+            const letra = textoOriginal[i];
+            const spanLetra = document.createElement('span');
+
+            // Adiciona a classe para estilização e o texto da letra
+            spanLetra.classList.add('letra-nome');
+            spanLetra.textContent = letra === ' ' ? '\u00A0' : letra; // Adiciona um espaço fixo para espaços
+            nomePerfil.appendChild(spanLetra);
+        }
+
+        const letras = document.querySelectorAll('.letra-nome');
+        let index = 0;
+
+        const animarLuz = () => {
+            // Remove a classe de brilho de todas as letras
+            letras.forEach(l => l.classList.remove('letra-brilho'));
+
+            // Adiciona a classe de brilho à letra atual
+            if (letras[index]) {
+                letras[index].classList.add('letra-brilho');
+            }
+
+            // Move para a próxima letra ou reinicia o loop
+            index++;
+            if (index >= letras.length) {
+                index = 0; // Reinicia para criar um loop contínuo
             }
         };
-        // Inicia o efeito de digitação após um pequeno atraso
-        setTimeout(digitarTexto, 1500);
+
+        // Inicia a animação em loop após um pequeno atraso
+        setInterval(animarLuz, 150); // Velocidade do efeito de luz (ajuste para a velocidade desejada)
     }
 
     // Bloquear download de imagens (clique direito e arrastar)
@@ -43,5 +60,4 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
         });
     });
-
 });
