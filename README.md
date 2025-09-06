@@ -23,6 +23,8 @@ Menu Mobile Otimizado: Menu de navegação especialmente projetado para disposit
 <img src="https://skillicons.dev/icons?i=html" height="40" alt="html5 logo" />&nbsp;
 <img src="https://skillicons.dev/icons?i=css" height="40" alt="css3 logo" />&nbsp;
 <img src="https://skillicons.dev/icons?i=js" height="40" alt="javascript logo" />&nbsp;
+<img src="https://skillicons.dev/icons?i=vscode" height="40" alt="Visual Studio Code logo" />&nbsp;
+<img src="https://cdn.simpleicons.org/canva/00C4CC" height="40" alt="Canva logo" />&nbsp;
 </p>
 
 
